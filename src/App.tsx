@@ -1,15 +1,21 @@
 import { motion } from "motion/react";
-import { Mail, Linkedin, Github, FileText, ArrowLeft, ArrowRight } from "lucide-react";
+import { Mail, Linkedin, Github } from "lucide-react";
+
+const workItems = [
+  { label: "projects", description: "built end-to-end through code" },
+  { label: "sketches", description: "(coming soon!) drawn in one take with a ball-point pen" },
+  { label: "photos", description: "captured from moments noticed" },
+];
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-[#1a1a1a] selection:bg-black selection:text-white">
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-[900px] mx-auto px-6 py-12 md:py-20"
-      >
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="min-h-screen bg-white text-[#1a1a1a] selection:bg-black selection:text-white"
+    >
+      <div className="max-w-[900px] mx-auto px-6 py-12 md:py-20">
         {/* Header / Breadcrumb */}
         <header className="mb-3 flex items-center justify-between">
           <nav className="text-[11px] font-medium text-[#666666] tracking-tight">
@@ -38,14 +44,12 @@ export default function App() {
               Aiden Hua
             </h1>
 
-            <div className="space-y-1 text-xs text-[#444444]">
-              <a 
-                href="#" 
-                className="block hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-all"
-              >
-                CS | McGill University
-              </a>
-            </div>
+            <a
+              href="#"
+              className="block text-xs text-[#444444] hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-colors"
+            >
+              CS | McGill University
+            </a>
 
             <div className="space-y-5 text-[13px] text-[#444444] leading-relaxed max-w-md font-normal">
               <p>
@@ -58,10 +62,10 @@ export default function App() {
           </div>
 
           <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-[2px]">
-            <img 
-              src="https://picsum.photos/seed/mountain-hiker/800/800?grayscale" 
+            <img
+              src="https://picsum.photos/seed/mountain-hiker/800/800?grayscale"
               alt="Aiden Hua"
-              className="object-cover w-full h-full opacity-95 hover:opacity-100 transition-opacity duration-500"
+              className="object-cover w-full h-full opacity-95 hover:opacity-100 transition-opacity duration-200"
               referrerPolicy="no-referrer"
             />
           </div>
@@ -76,31 +80,19 @@ export default function App() {
           </h2>
 
           <div className="space-y-6">
-            <div className="group">
-              <a href="#" className="inline-block text-base hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-all mb-0.5">
-                projects
-              </a>
-              <p className="text-[#888888] italic text-[11px]">built end-to-end through code</p>
-            </div>
-
-            <div className="group">
-              <a href="#" className="inline-block text-base hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-all mb-0.5">
-                sketches
-              </a>
-              <p className="text-[#888888] italic text-[11px]">(coming soon!) drawn in one take with a ball-point pen</p>
-            </div>
-
-            <div className="group">
-              <a href="#" className="inline-block text-base hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-all mb-0.5">
-                photos
-              </a>
-              <p className="text-[#888888] italic text-[11px]">captured from moments noticed</p>
-            </div>
+            {workItems.map(({ label, description }) => (
+              <div key={label}>
+                <a href="#" className="inline-block text-base hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-colors mb-0.5">
+                  {label}
+                </a>
+                <p className="text-[#888888] italic text-[11px]">{description}</p>
+              </div>
+            ))}
           </div>
         </section>
 
         <hr className="border-[#eeeeee] mb-6" />
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   );
 }
