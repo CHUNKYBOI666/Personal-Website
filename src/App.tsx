@@ -1,6 +1,9 @@
 import { motion, useInView } from "motion/react";
 import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
+import epsteinProjectThumbnail from "@/image.png";
+import baconheadThumbnail from "@/baconheadimg.png";
+import profilePhoto from "@/IMG_4586.JPG";
 
 const projects = [
   {
@@ -9,9 +12,9 @@ const projects = [
     category: "Systems · Backend",
     year: "2025",
     description:
-      "A fault-tolerant task scheduling system built on a custom distributed queue. Handles priority inversion, dead-letter queues, and real-time worker health monitoring across nodes.",
+      "RAG for 20k+ document corpus of the Epstein File. Include Q&A with Citations, entity search function, and relationship Graphs between entities. Allows open any cited document to see full DOJ text files.",
     tech: ["Go", "Redis", "gRPC", "Docker"],
-    thumbnail: "https://picsum.photos/seed/scheduler-sys/800/560?grayscale",
+    thumbnail: epsteinProjectThumbnail,
     link: "#",
   },
   {
@@ -20,9 +23,9 @@ const projects = [
     category: "Full-Stack · Web",
     year: "2024",
     description:
-      "An AI-assisted study planner that generates adaptive schedules from syllabi. Parses PDF course outlines and maps deadlines to a calendar with spaced-repetition suggestions.",
+      "Explores vision model which trains a bot that watches gameplay, learn game states and takes over to play the game. Tests and ran on simple roblox obbies.",
     tech: ["React", "Python", "FastAPI", "PostgreSQL"],
-    thumbnail: "https://picsum.photos/seed/chord-planner/800/560?grayscale",
+    thumbnail: baconheadThumbnail,
     link: "#",
   },
   {
@@ -31,20 +34,9 @@ const projects = [
     category: "Creative Tool · Web",
     year: "2024",
     description:
-      "A minimal content management system built for photographers. Features drag-and-drop curation, EXIF metadata display, and on-the-fly image optimization via Cloudflare Workers.",
+      "Semantic file search for macOS via Raycast. Describe what you're looking for in plain English and EasyFinder returns the most relevant images, PDFs, Office docs, and Markdown files from your machine. Uses Gemini's Multimodel Embedding 2 model.",
     tech: ["Next.js", "TypeScript", "Cloudflare", "Supabase"],
     thumbnail: "https://picsum.photos/seed/lens-cms/800/560?grayscale",
-    link: "#",
-  },
-  {
-    id: "04",
-    title: "Arbiter — Chess Engine",
-    category: "Algorithms · C++",
-    year: "2023",
-    description:
-      "A UCI-compatible chess engine implementing iterative deepening alpha-beta pruning, transposition tables, and a hand-tuned evaluation function reaching ~1800 Elo on CCRL.",
-    tech: ["C++", "UCI Protocol", "Bitboards"],
-    thumbnail: "https://picsum.photos/seed/arbiter-chess/800/560?grayscale",
     link: "#",
   },
 ];
@@ -133,8 +125,21 @@ export default function App() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="min-h-screen bg-white text-[#1a1a1a] selection:bg-black selection:text-white"
+      className="min-h-screen relative text-[#1a1a1a] selection:bg-black selection:text-white"
     >
+      {/* Background Image */}
+      <div 
+        className="fixed inset-0 z-[-1] pointer-events-none"
+        style={{
+          backgroundImage: `url(${profilePhoto})`,
+          backgroundSize: '100%',
+          backgroundPosition: 'center 69%',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.08,
+          filter: 'grayscale(100%) contrast(110%)',
+        }}
+      />
+
       <div className="max-w-[900px] mx-auto px-6 py-12 md:py-20">
         {/* Header */}
         <header className="mb-3 flex items-center justify-between">
@@ -143,13 +148,29 @@ export default function App() {
             <span className="mx-2">/</span>
           </nav>
           <div className="flex items-center gap-5 text-[#666666]">
-            <a href="#" className="hover:text-black transition-colors">
+            <a
+              href="mailto:aidenhua2007@gmail.com"
+              className="hover:text-black transition-colors"
+              aria-label="Email Aiden Hua"
+            >
               <Mail size={16} />
             </a>
-            <a href="#" className="hover:text-black transition-colors">
+            <a
+              href="https://www.linkedin.com/in/aiden-hua-660952294"
+              className="hover:text-black transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Aiden Hua on LinkedIn"
+            >
               <Linkedin size={16} />
             </a>
-            <a href="#" className="hover:text-black transition-colors">
+            <a
+              href="https://github.com/CHUNKYBOI666"
+              className="hover:text-black transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Aiden Hua on GitHub"
+            >
               <Github size={16} />
             </a>
           </div>
@@ -158,20 +179,22 @@ export default function App() {
         <hr className="border-[#eeeeee] mb-10" />
 
         {/* Intro Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-14">
-          <div className="space-y-6">
+        <div className="flex flex-col items-center text-center mb-14">
+          <div className="space-y-6 max-w-xl">
             <h1 className="text-lg font-bold tracking-tight text-black uppercase">
               Aiden Hua
             </h1>
 
             <a
-              href="#"
-              className="block text-xs text-[#444444] hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-colors"
+              href="https://www.mcgill.ca/"
+              className="inline-block text-xs text-[#444444] hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               CS | McGill University
             </a>
 
-            <div className="space-y-5 text-[13px] text-[#444444] leading-relaxed max-w-md font-normal">
+            <div className="space-y-5 text-[13px] text-[#444444] leading-relaxed font-normal">
               <p>
                 I'm a student who is passionate about designing and building
                 systems that create meaningful impact. I am currently seeking{" "}
@@ -185,15 +208,6 @@ export default function App() {
                 and building professional relationships.
               </p>
             </div>
-          </div>
-
-          <div className="relative aspect-[4/3] md:aspect-square overflow-hidden rounded-[2px]">
-            <img
-              src="https://picsum.photos/seed/mountain-hiker/800/800?grayscale"
-              alt="Aiden Hua"
-              className="object-cover w-full h-full opacity-95 hover:opacity-100 transition-opacity duration-200"
-              referrerPolicy="no-referrer"
-            />
           </div>
         </div>
 
