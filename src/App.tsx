@@ -17,7 +17,7 @@ const projects = [
     tech: ["Go", "Redis", "gRPC", "Docker"],
     thumbnail: epsteinProjectMedia,
     media: "video" as const,
-    link: "#",
+    link: "https://github.com/CHUNKYBOI666/RAGforEpsteinFiles",
   },
   {
     id: "02",
@@ -28,7 +28,7 @@ const projects = [
       "Explores vision model which trains a bot that watches gameplay, learn game states and takes over to play the game. Tests and ran on simple roblox obbies.",
     tech: ["React", "Python", "FastAPI", "PostgreSQL"],
     thumbnail: baconheadThumbnail,
-    link: "#",
+    link: "https://github.com/ibrahimansr/baconhead",
   },
   {
     id: "03",
@@ -39,7 +39,7 @@ const projects = [
       "Semantic file search for macOS via Raycast. Describe what you're looking for in plain English and EasyFinder returns the most relevant images, PDFs, Office docs, and Markdown files from your machine. Uses Gemini's Multimodel Embedding 2 model.",
     tech: ["Next.js", "TypeScript", "Cloudflare", "Supabase"],
     thumbnail: easyFinderThumbnail,
-    link: "#",
+    link: "https://github.com/CHUNKYBOI666/EasyFinder",
   },
 ];
 
@@ -102,8 +102,10 @@ function ProjectRow({
               </div>
               <a
                 href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex-shrink-0 mt-1 text-[#cccccc] hover:text-black transition-colors duration-200"
-                aria-label={`View ${project.title}`}
+                aria-label={`View ${project.title} on GitHub`}
               >
                 <ArrowUpRight size={15} />
               </a>
