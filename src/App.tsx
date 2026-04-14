@@ -1,10 +1,10 @@
 import { motion, useInView } from "motion/react";
 import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
-import epsteinProjectThumbnail from "@/image.png";
-import baconheadThumbnail from "@/baconheadimg.png";
-import easyFinderThumbnail from "@/EasyFinderPic.jpg";
-import profilePhoto from "@/IMG_4586.JPG";
+import epsteinProjectThumbnail from "@/assets/image.png";
+import baconheadThumbnail from "@/assets/baconheadimg.png";
+import easyFinderThumbnail from "@/assets/EasyFinderPic.jpg";
+import profilePhoto from "@/assets/IMG_4586.JPG";
 
 const projects = [
   {
