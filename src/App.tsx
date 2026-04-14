@@ -1,8 +1,8 @@
 import { motion, useInView } from "motion/react";
 import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
-import { useRef } from "react";
-import epsteinProjectThumbnail from "@/assets/image.png";
-import baconheadThumbnail from "@/assets/baconheadimg.png";
+import { Fragment, useRef } from "react";
+import epsteinProjectMedia from "@/assets/RagEpsteinDemo.mp4";
+import baconheadThumbnail from "@/assets/baconheadDemo.gif";
 import easyFinderThumbnail from "@/assets/EasyFinderPic.jpg";
 import profilePhoto from "@/assets/IMG_4586.JPG";
 
@@ -15,7 +15,8 @@ const projects = [
     description:
       "RAG for 20k+ document corpus of the Epstein File. Include Q&A with Citations, entity search function, and relationship Graphs between entities. Allows open any cited document to see full DOJ text files.",
     tech: ["Go", "Redis", "gRPC", "Docker"],
-    thumbnail: epsteinProjectThumbnail,
+    thumbnail: epsteinProjectMedia,
+    media: "video" as const,
     link: "#",
   },
   {
@@ -62,14 +63,29 @@ function ProjectRow({
       <div className="group grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6 py-8">
         {/* Thumbnail */}
         <div className="relative overflow-hidden rounded-[2px] aspect-[16/11] bg-[#f5f5f5]">
-          <img
-            src={project.thumbnail}
-            alt={project.title}
-            className="object-cover w-full h-full opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
-            referrerPolicy="no-referrer"
+          {project.media === "video" ? (
+            <video
+              src={project.thumbnail}
+              className="absolute inset-0 z-[1] size-full object-cover opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+              muted
+              loop
+              playsInline
+              autoPlay
+              aria-label={project.title}
+            />
+          ) : (
+            <img
+              src={project.thumbnail}
+              alt={project.title}
+              className="absolute inset-0 z-[1] size-full object-cover opacity-90 transition-all duration-500 group-hover:opacity-100 group-hover:scale-[1.03]"
+              loading="eager"
+              decoding="async"
+            />
+          )}
+          <div
+            className="pointer-events-none absolute inset-0 z-[2] bg-black/0 transition-colors duration-300 group-hover:bg-black/5"
+            aria-hidden
           />
-          {/* Subtle overlay on hover */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
         </div>
 
         {/* Details */}
@@ -126,22 +142,23 @@ export default function App() {
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="min-h-screen relative text-[#1a1a1a] selection:bg-black selection:text-white"
+      className="relative isolate min-h-screen text-[#1a1a1a] selection:bg-black selection:text-white"
     >
-      {/* Background Image */}
-      <div 
-        className="fixed inset-0 z-[-1] pointer-events-none"
+      {/* Keep behind page content but above body (avoid z-[-1], which can sit under the root white fill). */}
+      <div
+        aria-hidden
+        className="pointer-events-none fixed inset-0 z-0"
         style={{
           backgroundImage: `url(${profilePhoto})`,
-          backgroundSize: '100%',
-          backgroundPosition: 'center 69%',
-          backgroundRepeat: 'no-repeat',
-          opacity: 0.08,
-          filter: 'grayscale(100%) contrast(110%)',
+          backgroundSize: "cover",
+          backgroundPosition: "center 69%",
+          backgroundRepeat: "no-repeat",
+          opacity: 0.12,
+          filter: "grayscale(100%) contrast(110%)",
         }}
       />
 
-      <div className="max-w-[900px] mx-auto px-6 py-12 md:py-20">
+      <div className="relative z-10 max-w-[900px] mx-auto px-6 py-12 md:py-20">
         {/* Header */}
         <header className="mb-3 flex items-center justify-between">
           <nav className="text-[11px] font-medium text-[#666666] tracking-tight">
@@ -215,7 +232,9 @@ export default function App() {
 
           <div>
             {projects.map((project, i) => (
-              <ProjectRow key={project.id} project={project} index={i} />
+              <Fragment key={project.id}>
+                <ProjectRow project={project} index={i} />
+              </Fragment>
             ))}
           </div>
         </section>

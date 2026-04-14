@@ -1,5 +1,3 @@
 node_modules
 dist
 .env
-assets/*.png
-assets/
