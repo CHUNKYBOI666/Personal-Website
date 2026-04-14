@@ -3,6 +3,7 @@ import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { useRef } from "react";
 import epsteinProjectThumbnail from "@/image.png";
 import baconheadThumbnail from "@/baconheadimg.png";
+import easyFinderThumbnail from "@/EasyFinderPic.jpg";
 import profilePhoto from "@/IMG_4586.JPG";
 
 const projects = [
@@ -36,7 +37,7 @@ const projects = [
     description:
       "Semantic file search for macOS via Raycast. Describe what you're looking for in plain English and EasyFinder returns the most relevant images, PDFs, Office docs, and Markdown files from your machine. Uses Gemini's Multimodel Embedding 2 model.",
     tech: ["Next.js", "TypeScript", "Cloudflare", "Supabase"],
-    thumbnail: "https://picsum.photos/seed/lens-cms/800/560?grayscale",
+    thumbnail: easyFinderThumbnail,
     link: "#",
   },
 ];
@@ -179,33 +180,19 @@ export default function App() {
         <hr className="border-[#eeeeee] mb-10" />
 
         {/* Intro Section */}
-        <div className="flex flex-col items-center text-center mb-14">
+        <div className="flex flex-col mb-14">
           <div className="space-y-6 max-w-xl">
             <h1 className="text-lg font-bold tracking-tight text-black uppercase">
               Aiden Hua
             </h1>
 
-            <a
-              href="https://www.mcgill.ca/"
-              className="inline-block text-xs text-[#444444] hover:text-black underline underline-offset-4 decoration-[#eeeeee] hover:decoration-black transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              CS | McGill University
-            </a>
-
             <div className="space-y-5 text-[13px] text-[#444444] leading-relaxed font-normal">
               <p>
-                I'm a student who is passionate about designing and building
-                systems that create meaningful impact. I am currently seeking{" "}
-                <span className="italic">summer 2026</span> (May–August)
-                internships.
+                Studying CS @McGill, Incoming Video Design Engineer @Evertz.
               </p>
-              <p>
-                In my leisure time, I pursue strategic and creative interests
-                including chess, drawing, photography, and volleyball. I'm
-                committed to continuous learning, collaborative problem-solving,
-                and building professional relationships.
+              <p className="mt-4">
+                Recently made baconhead and Rag for Epstien File. Tryna learn
+                how to build RAG end to end, and also finetuning models.
               </p>
             </div>
           </div>
