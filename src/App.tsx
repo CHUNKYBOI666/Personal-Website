@@ -28,6 +28,7 @@ const projects = [
       "Explores vision model which trains a bot that watches gameplay, learn game states and takes over to play the game. Tests and ran on simple roblox obbies.",
     tech: ["React", "Python", "FastAPI", "PostgreSQL"],
     thumbnail: baconheadThumbnail,
+    media: "image" as const,
     link: "https://github.com/ibrahimansr/baconhead",
   },
   {
@@ -39,6 +40,7 @@ const projects = [
       "Semantic file search for macOS via Raycast. Describe what you're looking for in plain English and EasyFinder returns the most relevant images, PDFs, Office docs, and Markdown files from your machine. Uses Gemini's Multimodel Embedding 2 model.",
     tech: ["Next.js", "TypeScript", "Cloudflare", "Supabase"],
     thumbnail: easyFinderThumbnail,
+    media: "image" as const,
     link: "https://github.com/CHUNKYBOI666/EasyFinder",
   },
 ];
@@ -238,6 +240,30 @@ export default function App() {
                 <ProjectRow project={project} index={i} />
               </Fragment>
             ))}
+          </div>
+        </section>
+
+        {/* Contribution Graph */}
+        <section className="mb-16">
+          <h2 className="text-[10px] font-bold tracking-[0.25em] text-black uppercase mb-6 opacity-60">
+            Activity
+          </h2>
+          <div className="w-full overflow-x-auto pb-2">
+            <a
+              href="https://github.com/CHUNKYBOI666"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block min-w-[700px] md:min-w-full"
+              aria-label="View GitHub Contributions"
+            >
+              <img
+                src="https://ghchart.rshah.org/1a1a1a/CHUNKYBOI666"
+                alt="Aiden Hua's GitHub Contribution Graph"
+                className="w-full h-auto opacity-80 hover:opacity-100 transition-opacity duration-300"
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
           </div>
         </section>
 
