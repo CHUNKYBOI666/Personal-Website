@@ -1,6 +1,7 @@
 import { motion, useInView } from "motion/react";
 import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
 import { Fragment, useRef } from "react";
+import { GitHubCalendar } from "react-github-calendar";
 import epsteinProjectMedia from "@/assets/RagEpsteinDemo.mp4";
 import baconheadThumbnail from "@/assets/baconheadDemo.gif";
 import easyFinderThumbnail from "@/assets/EasyFinderPic.jpg";
@@ -203,9 +204,32 @@ export default function App() {
         {/* Intro Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-14">
           <div className="space-y-6 max-w-xl">
-            <h1 className="text-lg font-bold tracking-tight text-black uppercase">
-              Aiden Hua
-            </h1>
+            <motion.h1 
+              className="relative text-xl font-medium tracking-tight text-gray-800 cursor-default w-fit"
+              initial="initial"
+              whileHover="hover"
+            >
+              <motion.span
+                variants={{
+                  initial: { opacity: 1, y: 0, filter: "blur(0px)" },
+                  hover: { opacity: 0, y: -8, filter: "blur(4px)" }
+                }}
+                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                className="inline-block"
+              >
+                Aiden Hua
+              </motion.span>
+              <motion.span
+                variants={{
+                  initial: { opacity: 0, y: 8, filter: "blur(4px)" },
+                  hover: { opacity: 1, y: 0, filter: "blur(0px)" }
+                }}
+                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                className="absolute left-0 top-0 inline-block text-black"
+              >
+                华一诺
+              </motion.span>
+            </motion.h1>
 
             <div className="space-y-5 text-[13px] text-[#444444] leading-relaxed font-normal">
               <p>
@@ -224,15 +248,24 @@ export default function App() {
               href="https://github.com/CHUNKYBOI666"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-max"
+              className="block w-max opacity-80 hover:opacity-100 transition-opacity duration-300"
               aria-label="View GitHub Contributions"
             >
-              <img
-                src="https://ghchart.rshah.org/1a1a1a/CHUNKYBOI666"
-                alt="Aiden Hua's GitHub Contribution Graph"
-                className="w-[800px] max-w-none opacity-80 hover:opacity-100 transition-opacity duration-300 -ml-[404px]"
-                loading="lazy"
-                decoding="async"
+              <GitHubCalendar
+                username="CHUNKYBOI666"
+                blockSize={12}
+                blockMargin={6}
+                blockRadius={0}
+                showTotalCount={false}
+                showColorLegend={false}
+                theme={{
+                  light: ["#eeeeee", "#767676", "#676767", "#4d4d4d", "#1a1a1a"],
+                }}
+                transformData={(contributions) =>
+                  contributions.filter(
+                    (day) => new Date(day.date) >= new Date("2025-11-01")
+                  )
+                }
               />
             </a>
           </div>
@@ -269,7 +302,6 @@ export default function App() {
           </h2>
           <div className="space-y-6">
             {[
-              { label: "sketches", description: "(coming soon!) drawn in one take with a ball-point pen" },
               { label: "photos", description: "captured from moments noticed" },
             ].map(({ label, description }) => (
               <div key={label}>
