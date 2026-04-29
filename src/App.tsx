@@ -233,10 +233,24 @@ export default function App() {
 
             <div className="space-y-5 text-[13px] text-[#444444] leading-relaxed font-normal">
               <p>
-                Studying CS @McGill, Incoming Video Design Engineer @Evertz.
+                Studying CS @
+                <a
+                  href="https://www.mcgill.ca"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-block font-bold no-underline after:content-[''] after:absolute after:left-0 after:bottom-px after:h-[1.5px] after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100"
+                >
+                  McGill
+                </a>
+                , Incoming Video Design Engineer{" "}
+                <span className="group relative inline-block font-bold">
+                  @Evertz
+                  <span className="pointer-events-none absolute left-0 bottom-px h-[1.5px] w-full origin-left scale-x-0 bg-current transition-transform duration-300 ease-out group-hover:scale-x-100" />
+                </span>
+                .
               </p>
               <p className="mt-4">
-                Recently made baconhead and Rag for Epstien File. Tryna learn
+                Recently made baconhead and Rag for Epstein File. Tryna learn
                 how to build RAG end to end, and also finetuning models.
               </p>
             </div>
