@@ -1,7 +1,7 @@
 import { motion, useInView } from "motion/react";
 import { Mail, Linkedin, Github, ArrowUpRight } from "lucide-react";
-import { Fragment, useRef } from "react";
-import { GitHubCalendar } from "react-github-calendar";
+import { Fragment, useRef, useState } from "react";
+import { SnakeCalendar } from "@/components/SnakeCalendar";
 import epsteinProjectMedia from "@/assets/RagEpsteinDemo.mp4";
 import baconheadThumbnail from "@/assets/baconheadDemo.gif";
 import easyFinderThumbnail from "@/assets/EasyFinderPic.jpg";
@@ -142,23 +142,31 @@ function ProjectRow({
 }
 
 export default function App() {
+  const backgroundOpacities = [0.06, 0.08, 0.12, 0.16, 0.22, 0.28];
+  const [backgroundOpacityIndex, setBackgroundOpacityIndex] = useState(1);
+
+  const handlePageClick = () => {
+    setBackgroundOpacityIndex((prev) => (prev + 1) % backgroundOpacities.length);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="relative isolate min-h-screen text-[#1a1a1a] selection:bg-black selection:text-white"
+      onClick={handlePageClick}
     >
       {/* Keep behind page content but above body (avoid z-[-1], which can sit under the root white fill). */}
       <div
         aria-hidden
-        className="pointer-events-none fixed inset-0 z-0"
+        className="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500"
         style={{
           backgroundImage: `url(${profilePhoto})`,
           backgroundSize: "cover",
           backgroundPosition: "center 69%",
           backgroundRepeat: "no-repeat",
-          opacity: 0.12,
+          opacity: backgroundOpacities[backgroundOpacityIndex],
           filter: "grayscale(100%) contrast(110%)",
         }}
       />
@@ -265,7 +273,7 @@ export default function App() {
               className="block w-max opacity-80 hover:opacity-100 transition-opacity duration-300"
               aria-label="View GitHub Contributions"
             >
-              <GitHubCalendar
+              <SnakeCalendar
                 username="CHUNKYBOI666"
                 blockSize={12}
                 blockMargin={6}
